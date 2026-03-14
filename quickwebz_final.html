@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QuickWebz — Fast, Modern Websites for Local Businesses in UAE</title>
+<meta name="description" content="I build fast, modern websites for local businesses in the UAE. Get your business online today. Starting at 1,500 AED."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0f0e0d;
+  --ink2:#4a4744;
+  --paper:#faf9f6;
+  --card:#ffffff;
+  --accent:#c8530a;
+  --border:#e4e0d8;
+  --green:#1a7a4a;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:var(--paper);border-bottom:1px solid var(--border);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-family:'DM Serif Display',serif;font-size:1.2rem;letter-spacing:-0.02em}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink2)}
+.nav-links a{cursor:pointer;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-cta{background:var(--ink);color:#fff;padding:7px 18px;border-radius:50px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:background 0.2s;border:none}
+.nav-cta:hover{background:var(--accent)}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* SHARED */
+section{padding:80px 5vw}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-0.02em;line-height:1.15;margin-bottom:16px;color:var(--ink)}
+.section-sub{color:var(--ink2);max-width:500px;line-height:1.7}
+.btn-primary{background:var(--ink);color:#fff;padding:13px 28px;border-radius:50px;font-weight:600;font-size:0.95rem;cursor:pointer;transition:all 0.2s;border:none;font-family:'DM Sans',sans-serif}
+.btn-primary:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-secondary{background:#fff;color:var(--ink);padding:13px 28px;border-radius:50px;font-weight:600;font-size:0.95rem;cursor:pointer;border:1.5px solid var(--border);transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.btn-secondary:hover{border-color:var(--ink)}
+
+/* HERO */
+.hero{padding:100px 5vw 80px;text-align:center}
+.hero-badge{display:inline-block;background:#fff2ec;color:var(--accent);border:1px solid #f5c5a3;border-radius:50px;font-size:0.78rem;font-weight:600;padding:5px 14px;letter-spacing:0.04em;margin-bottom:28px;text-transform:uppercase}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.1;letter-spacing:-0.03em;max-width:800px;margin:0 auto 20px}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero p{font-size:1.1rem;color:var(--ink2);max-width:500px;margin:0 auto 36px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:700px;margin:56px auto 0}
+.stat{background:var(--card);padding:28px 20px;text-align:center}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--ink);display:block}
+.stat-label{font-size:0.8rem;color:var(--ink2);margin-top:2px}
+
+/* BENEFITS */
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:48px}
+.benefit-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px}
+.benefit-icon{width:42px;height:42px;border-radius:10px;background:#fff2ec;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.benefit-icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.benefit-card h3{font-size:1rem;font-weight:600;margin-bottom:8px;color:var(--ink)}
+.benefit-card p{font-size:0.875rem;color:var(--ink2);line-height:1.6}
+
+/* PORTFOLIO */
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:48px}
+.portfolio-card{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s;cursor:pointer}
+.portfolio-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.1)}
+.portfolio-thumb{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.thumb-barber{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.thumb-cafe{background:linear-gradient(135deg,#3d2b1f,#6b4423)}
+.thumb-garage{background:linear-gradient(135deg,#1c2833,#2e4053)}
+.mock-browser{width:80%;background:rgba(255,255,255,0.08);border-radius:10px;padding:12px}
+.mock-bar{height:6px;background:rgba(255,255,255,0.15);border-radius:3px;margin-bottom:10px;width:60%}
+.mock-lines{display:flex;flex-direction:column;gap:5px}
+.mock-line{height:5px;background:rgba(255,255,255,0.1);border-radius:2px}
+.mock-line.short{width:70%}
+.mock-title{font-size:1rem;font-weight:700;margin-bottom:4px;font-family:'DM Serif Display',serif}
+.portfolio-info{padding:20px 22px}
+.portfolio-tag{font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.portfolio-info h3{font-size:1.05rem;font-weight:600;margin-bottom:8px;color:var(--ink)}
+.portfolio-info p{font-size:0.85rem;color:var(--ink2);line-height:1.6;margin-bottom:16px}
+.view-demo-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--ink);border:1.5px solid var(--border);border-radius:50px;padding:7px 16px;transition:all 0.2s;background:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+.view-demo-btn:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+
+/* SERVICES */
+.services-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px}
+.services-list{display:flex;flex-direction:column;gap:12px}
+.service-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:16px}
+.service-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0}
+.service-item h3{font-size:0.95rem;font-weight:600;margin-bottom:4px;color:var(--ink)}
+.service-item p{font-size:0.83rem;color:var(--ink2);line-height:1.55}
+.pricing-cards{display:flex;flex-direction:column;gap:16px}
+.price-card{border-radius:16px;padding:26px 24px;border:1.5px solid var(--border);background:var(--card)}
+.price-card.featured{background:var(--ink);border-color:var(--ink)}
+.price-tier{font-size:0.75rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:8px;color:var(--ink2)}
+.price-card.featured .price-tier{color:rgba(255,255,255,0.55)}
+.price-amount{font-family:'DM Serif Display',serif;font-size:1.9rem;margin-bottom:6px;color:var(--ink)}
+.price-card.featured .price-amount{color:#fff}
+.price-desc{font-size:0.83rem;color:var(--ink2);line-height:1.5}
+.price-card.featured .price-desc{color:rgba(255,255,255,0.55)}
+
+/* CONTACT */
+.contact-bg{background:#0f0e0d;color:#fff}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-bg .section-label{color:#f5c5a3}
+.contact-bg .section-title{color:#fff}
+.contact-bg .section-sub{color:rgba(255,255,255,0.6)}
+.contact-info{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.contact-item{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,0.75);font-size:0.9rem}
+.contact-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon svg{width:16px;height:16px;stroke:rgba(255,255,255,0.7);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wa-button{display:flex;align-items:center;gap:10px;background:#25d366;color:#fff;border-radius:12px;padding:14px 20px;font-weight:600;font-size:0.9rem;margin-top:8px;transition:background 0.2s;cursor:pointer;border:none;width:fit-content;font-family:'DM Sans',sans-serif}
+.wa-button:hover{background:#1ebe5c}
+.wa-icon{width:22px;height:22px;flex-shrink:0}
+.contact-form{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px 28px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.6);margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 14px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s}
+.form-group select{background:#2a2a2a;color:#fff}
+.form-group select option{background:#2a2a2a;color:#fff}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.25)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(255,255,255,0.35)}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.submit-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;cursor:pointer;transition:background 0.2s}
+.submit-btn:hover{background:#b04608}
+.submit-btn:disabled{opacity:0.6;cursor:not-allowed}
+.form-success{display:none;text-align:center;padding:24px;color:#fff}
+.form-success h3{font-size:1.2rem;margin-bottom:8px}
+.form-success p{color:rgba(255,255,255,0.6);font-size:0.9rem}
+
+/* DEMO MODAL */
+.demo-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);align-items:stretch;justify-content:stretch}
+.demo-overlay.open{display:flex}
+.demo-modal{width:100%;height:100%;display:flex;flex-direction:column}
+.demo-modal-nav{background:#1a1a1a;border-bottom:1px solid #333;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.demo-modal-title{color:#fff;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:10px}
+.demo-modal-tag{background:var(--accent);color:#fff;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:0.05em}
+.demo-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+.demo-close:hover{background:rgba(255,255,255,0.2)}
+.demo-content{flex:1;overflow-y:auto}
+
+/* FOOTER */
+footer{background:#0f0e0d;border-top:1px solid rgba(255,255,255,0.08);padding:32px 5vw;text-align:center;color:rgba(255,255,255,0.4);font-size:0.82rem}
+footer span{color:rgba(255,255,255,0.7);font-weight:500}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;border-radius:12px;padding:14px 20px;font-size:0.875rem;font-weight:500;transform:translateY(100px);opacity:0;transition:all 0.35s;z-index:999;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ===================== DEMO SITE STYLES ===================== */
+
+/* --- BARBER DEMO --- */
+.barber-site{font-family:'Syne',sans-serif;background:#0d0d0d;color:#fff;min-height:100vh}
+.barber-site *{box-sizing:border-box;margin:0;padding:0}
+.barber-nav{background:#0d0d0d;border-bottom:1px solid #222;padding:0 6vw;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.barber-logo{font-size:1.1rem;font-weight:800;letter-spacing:0.05em;text-transform:uppercase}
+.barber-logo span{color:#c8a96e}
+.barber-nav-links{display:flex;gap:20px;font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+.barber-hero{background:#0d0d0d;padding:80px 6vw 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.barber-hero-badge{display:inline-block;border:1px solid #c8a96e;color:#c8a96e;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:20px}
+.barber-hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;letter-spacing:-0.02em;margin-bottom:20px}
+.barber-hero h1 em{color:#c8a96e;font-style:normal}
+.barber-hero p{color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.7;margin-bottom:32px;font-weight:400}
+.barber-cta{display:inline-flex;align-items:center;gap:8px;background:#c8a96e;color:#0d0d0d;padding:13px 26px;border-radius:2px;font-weight:700;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Syne',sans-serif}
+.barber-visual{background:#1a1a1a;border-radius:4px;height:320px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.barber-visual-inner{text-align:center}
+.barber-scissors{font-size:4rem;display:block;margin-bottom:12px}
+.barber-visual-text{font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#c8a96e}
+.barber-services{padding:60px 6vw;background:#111}
+.barber-services-title{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px}
+.barber-services h2{font-size:2rem;font-weight:800;margin-bottom:40px}
+.barber-services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:#222}
+.barber-service{background:#111;padding:28px 22px}
+.barber-service-num{font-size:0.7rem;font-weight:700;color:#c8a96e;letter-spacing:0.1em;margin-bottom:10px}
+.barber-service h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.barber-service p{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.6}
+.barber-service-price{font-size:0.85rem;font-weight:700;color:#c8a96e;margin-top:10px}
+.barber-reviews{padding:60px 6vw;background:#0d0d0d}
+.barber-reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
+.barber-review{background:#1a1a1a;border:1px solid #222;border-radius:4px;padding:22px}
+.barber-review-stars{color:#c8a96e;font-size:0.9rem;margin-bottom:10px}
+.barber-review p{font-size:0.85rem;color:rgba(255,255,255,0.65);line-height:1.6;margin-bottom:12px}
+.barber-review-name{font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.barber-contact{padding:60px 6vw;background:#111;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.barber-contact h2{font-size:1.8rem;font-weight:800;margin-bottom:16px}
+.barber-contact p{color:rgba(255,255,255,0.5);font-size:0.9rem;line-height:1.7;margin-bottom:24px}
+.barber-contact-details{display:flex;flex-direction:column;gap:12px}
+.barber-contact-item{display:flex;align-items:center;gap:10px;font-size:0.85rem;color:rgba(255,255,255,0.65)}
+.barber-contact-item strong{color:#c8a96e}
+.barber-wa{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:12px 22px;border-radius:2px;font-weight:700;font-size:0.82rem;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Syne',sans-serif;margin-top:8px}
+.barber-map{background:#1a1a1a;border-radius:4px;height:220px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:1px solid #222}
+.barber-footer{background:#0d0d0d;border-top:1px solid #1a1a1a;padding:24px 6vw;text-align:center;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.2)}
+
+/* --- CAFE DEMO --- */
+.cafe-site{font-family:'Instrument Serif',serif;background:#fdf8f0;color:#2c1810;min-height:100vh}
+.cafe-site *{box-sizing:border-box;margin:0;padding:0}
+.cafe-nav{background:#fdf8f0;border-bottom:1px solid #e8d5b0;padding:0 6vw;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.cafe-logo{font-size:1.3rem;color:#2c1810;letter-spacing:-0.01em}
+.cafe-logo em{color:#8b4513;font-style:italic}
+.cafe-nav-links{display:flex;gap:20px;font-size:0.85rem;font-family:'DM Sans',sans-serif;color:#8b6349}
+.cafe-hero{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:480px}
+.cafe-hero-text{padding:70px 6vw 60px;display:flex;flex-direction:column;justify-content:center}
+.cafe-hero-tag{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8b4513;margin-bottom:16px}
+.cafe-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.1;margin-bottom:20px;color:#2c1810}
+.cafe-hero h1 em{color:#8b4513}
+.cafe-hero p{font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#6b4c3b;line-height:1.7;margin-bottom:28px}
+.cafe-cta{display:inline-flex;align-items:center;gap:8px;background:#2c1810;color:#fdf8f0;padding:13px 26px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.88rem;cursor:pointer;border:none}
+.cafe-hero-img{background:linear-gradient(160deg,#6b4423,#3d2b1f);display:flex;align-items:center;justify-content:center;font-size:5rem}
+.cafe-menu{padding:60px 6vw;background:#fff}
+.cafe-menu-label{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8b4513;margin-bottom:8px}
+.cafe-menu h2{font-size:2rem;color:#2c1810;margin-bottom:36px}
+.cafe-menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.cafe-menu-item{background:#fdf8f0;border:1px solid #e8d5b0;border-radius:12px;padding:22px 18px}
+.cafe-menu-emoji{font-size:1.8rem;margin-bottom:10px;display:block}
+.cafe-menu-item h3{font-size:1rem;color:#2c1810;margin-bottom:4px}
+.cafe-menu-item p{font-family:'DM Sans',sans-serif;font-size:0.8rem;color:#8b6349;line-height:1.5;margin-bottom:10px}
+.cafe-menu-price{font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;color:#8b4513}
+.cafe-about{padding:60px 6vw;background:#fdf8f0;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.cafe-about h2{font-size:1.9rem;color:#2c1810;margin-bottom:16px}
+.cafe-about p{font-family:'DM Sans',sans-serif;font-size:0.9rem;color:#6b4c3b;line-height:1.8;margin-bottom:16px}
+.cafe-hours{background:#fff;border:1px solid #e8d5b0;border-radius:12px;padding:22px 20px}
+.cafe-hours h3{font-size:1rem;color:#2c1810;margin-bottom:14px}
+.cafe-hour-row{display:flex;justify-content:space-between;font-family:'DM Sans',sans-serif;font-size:0.83rem;padding:7px 0;border-bottom:1px solid #f0e4cc;color:#6b4c3b}
+.cafe-hour-row:last-child{border-bottom:none}
+.cafe-hour-row span:last-child{color:#2c1810;font-weight:600}
+.cafe-reviews{padding:60px 6vw;background:#fff}
+.cafe-reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:36px}
+.cafe-review{background:#fdf8f0;border:1px solid #e8d5b0;border-radius:12px;padding:22px}
+.cafe-review-stars{color:#d4a017;margin-bottom:8px;font-size:0.9rem}
+.cafe-review p{font-size:0.88rem;color:#6b4c3b;line-height:1.6;margin-bottom:12px;font-family:'DM Sans',sans-serif}
+.cafe-review-name{font-size:0.75rem;font-family:'DM Sans',sans-serif;font-weight:700;color:#a07a5a;text-transform:uppercase;letter-spacing:0.05em}
+.cafe-contact{padding:60px 6vw;background:#2c1810;color:#fdf8f0;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.cafe-contact h2{font-size:1.9rem;margin-bottom:16px;color:#fdf8f0}
+.cafe-contact p{font-family:'DM Sans',sans-serif;font-size:0.9rem;color:rgba(253,248,240,0.65);line-height:1.7;margin-bottom:8px}
+.cafe-contact-detail{font-family:'DM Sans',sans-serif;font-size:0.88rem;color:rgba(253,248,240,0.75);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.cafe-wa{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:12px 22px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.88rem;cursor:pointer;border:none;margin-top:16px}
+.cafe-map{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;height:220px;display:flex;align-items:center;justify-content:center;color:rgba(253,248,240,0.25);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
+.cafe-footer{background:#1a0e08;padding:20px 6vw;text-align:center;font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(253,248,240,0.25)}
+
+/* --- GARAGE DEMO --- */
+.garage-site{font-family:'DM Sans',sans-serif;background:#f0f0f0;color:#1a1a1a;min-height:100vh}
+.garage-site *{box-sizing:border-box;margin:0;padding:0}
+.garage-nav{background:#1a1a1a;padding:0 6vw;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.garage-logo{font-size:1rem;font-weight:700;color:#fff;letter-spacing:0.02em}
+.garage-logo span{color:#e63946}
+.garage-nav-links{display:flex;gap:20px;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.5)}
+.garage-hero{background:#1a1a1a;padding:70px 6vw 60px;position:relative;overflow:hidden}
+.garage-hero::before{content:'';position:absolute;right:-100px;top:-100px;width:400px;height:400px;background:rgba(230,57,70,0.06);border-radius:50%}
+.garage-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.garage-hero-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#e63946;margin-bottom:14px}
+.garage-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:18px}
+.garage-hero p{font-size:0.92rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:28px}
+.garage-cta{display:inline-flex;align-items:center;gap:8px;background:#e63946;color:#fff;padding:13px 26px;border-radius:6px;font-weight:700;font-size:0.88rem;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.garage-badges{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.garage-badge{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:50px;padding:5px 12px;font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.03em}
+.garage-hero-visual{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;height:280px;display:flex;align-items:center;justify-content:center;font-size:5rem}
+.garage-services{padding:60px 6vw;background:#f0f0f0}
+.garage-services-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#e63946;margin-bottom:8px}
+.garage-services h2{font-size:1.9rem;font-weight:700;margin-bottom:36px;color:#1a1a1a}
+.garage-services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.garage-service{background:#fff;border-radius:8px;padding:24px 20px;border-left:3px solid #e63946}
+.garage-service-icon{font-size:1.5rem;margin-bottom:10px;display:block}
+.garage-service h3{font-size:0.95rem;font-weight:700;margin-bottom:6px;color:#1a1a1a}
+.garage-service p{font-size:0.8rem;color:#666;line-height:1.55}
+.garage-service-price{font-size:0.85rem;font-weight:700;color:#e63946;margin-top:8px}
+.garage-why{padding:60px 6vw;background:#1a1a1a;color:#fff}
+.garage-why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:36px}
+.garage-why-item{text-align:center}
+.garage-why-num{font-size:2.2rem;font-weight:700;color:#e63946;display:block;margin-bottom:6px}
+.garage-why-item h3{font-size:0.9rem;font-weight:700;margin-bottom:4px}
+.garage-why-item p{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.5}
+.garage-reviews{padding:60px 6vw;background:#f8f8f8}
+.garage-reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:36px}
+.garage-review{background:#fff;border-radius:8px;padding:20px;border:1px solid #e8e8e8}
+.garage-review-stars{color:#f4a261;margin-bottom:8px}
+.garage-review p{font-size:0.85rem;color:#555;line-height:1.6;margin-bottom:12px}
+.garage-review-name{font-size:0.75rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:0.05em}
+.garage-contact{padding:60px 6vw;background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.garage-contact-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#e63946;margin-bottom:8px}
+.garage-contact h2{font-size:1.8rem;font-weight:700;margin-bottom:16px;color:#1a1a1a}
+.garage-contact-items{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.garage-contact-item{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#444}
+.garage-contact-item strong{color:#1a1a1a}
+.garage-wa{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:12px 22px;border-radius:6px;font-weight:700;font-size:0.85rem;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.garage-map{background:#f0f0f0;border:1px solid #e0e0e0;border-radius:8px;height:220px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
+.barber-nav-links span,.cafe-nav-links span,.garage-nav-links span{cursor:pointer;transition:opacity 0.2s}
+.barber-nav-links span:hover{opacity:0.6}
+.cafe-nav-links span:hover{opacity:0.6}
+.garage-nav-links span:hover{opacity:0.6}
+.garage-footer{background:#1a1a1a;padding:20px 6vw;text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.25)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .services-layout,.contact-layout{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .barber-hero,.cafe-hero,.cafe-about,.cafe-contact,.garage-hero-inner,.garage-contact{grid-template-columns:1fr}
+  .barber-contact{grid-template-columns:1fr}
+  .cafe-hero-img{height:200px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Quick<span>Webz</span></div>
+  <div class="nav-links">
+    <a onclick="showPage('home')" class="active">Home</a>
+    <a onclick="showPage('portfolio')">Work</a>
+    <a onclick="showPage('services')">Services</a>
+    <a onclick="showPage('contact')">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="showPage('contact')">Get a demo →</button>
+</nav>
+
+<!-- ============ HOME ============ -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="container">
+      <span class="hero-badge">🇦🇪 Based in Sharjah, UAE</span>
+      <h1>I build <em>fast, modern</em> websites for local businesses.</h1>
+      <p>Your business deserves to be found online. I create beautiful, mobile-ready websites that help customers discover and contact you — starting at just 1,500 AED.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')">Get a free demo site</button>
+        <button class="btn-secondary" onclick="showPage('portfolio')">See my work ↗</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-num">3–5</span><span class="stat-label">Days to launch</span></div>
+        <div class="stat"><span class="stat-num">1,500</span><span class="stat-label">AED starting price</span></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Mobile optimized</span></div>
+      </div>
+    </div>
+  </div>
+  <section>
+    <div class="container">
+      <p class="section-label">Why it matters</p>
+      <h2 class="section-title">Benefits of having a website</h2>
+      <p class="section-sub">Most local businesses in the UAE are found through Google. If you're not online, you're invisible to customers searching for your service.</p>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <h3>Found on Google Search</h3>
+          <p>Customers searching for your service in your area will find you first. SEO-ready from day one.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3>Mobile Optimized</h3>
+          <p>Over 80% of people browse on their phone. Your site will look perfect on any screen, always.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Google Maps Ready</h3>
+          <p>Your location embedded on your site so customers can find and navigate to you with one tap.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12 19.79 19.79 0 0 1 1.65 3.35 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <h3>WhatsApp Contact Button</h3>
+          <p>Let customers message you instantly via WhatsApp — the most popular way to reach businesses in the UAE.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="container">
+      <p class="section-label">Example work</p>
+      <h2 class="section-title">Demo websites I've built</h2>
+      <p class="section-sub">Click any card to see the full demo website.</p>
+      <div class="portfolio-grid" style="margin-top:36px">
+        <div class="portfolio-card" onclick="openDemo('barber')">
+          <div class="portfolio-thumb thumb-barber"><div class="mock-browser"><div class="mock-bar"></div><div class="mock-title" style="color:#d4af6a">✂ Al Noor Barbers</div><div class="mock-lines"><div class="mock-line"></div><div class="mock-line short"></div></div></div></div>
+          <div class="portfolio-info"><p class="portfolio-tag">Barber Shop</p><h3>Classic & Modern Cuts</h3><p>Sleek dark design with services, reviews, and WhatsApp booking.</p><button class="view-demo-btn">View demo ↗</button></div>
+        </div>
+        <div class="portfolio-card" onclick="openDemo('cafe')">
+          <div class="portfolio-thumb thumb-cafe"><div class="mock-browser"><div class="mock-bar"></div><div class="mock-title" style="color:#e8c98a">☕ Bait Al Qahwa</div><div class="mock-lines"><div class="mock-line"></div><div class="mock-line short"></div></div></div></div>
+          <div class="portfolio-info"><p class="portfolio-tag">Café</p><h3>Menu, Location & Vibe</h3><p>Warm editorial design with full menu, hours, and location.</p><button class="view-demo-btn">View demo ↗</button></div>
+        </div>
+        <div class="portfolio-card" onclick="openDemo('garage')">
+          <div class="portfolio-thumb thumb-garage"><div class="mock-browser"><div class="mock-bar"></div><div class="mock-title" style="color:#7eb8d4">🔧 Gulf Auto Care</div><div class="mock-lines"><div class="mock-line"></div><div class="mock-line short"></div></div></div></div>
+          <div class="portfolio-info"><p class="portfolio-tag">Car Garage</p><h3>Services & Bookings</h3><p>Bold professional design with services, pricing, and WhatsApp.</p><button class="view-demo-btn">View demo ↗</button></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px"><button class="btn-secondary" onclick="showPage('portfolio')">See all examples →</button></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PORTFOLIO ============ -->
+<div id="portfolio" class="page">
+  <section style="padding-top:60px">
+    <div class="container">
+      <p class="section-label">My Work</p>
+      <h2 class="section-title">Demo websites for local businesses</h2>
+      <p class="section-sub">Click any card to see the full live demo. I can build something like this for your business in 3–5 days.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-card" onclick="openDemo('barber')">
+          <div class="portfolio-thumb thumb-barber"><div class="mock-browser"><div class="mock-bar"></div><div class="mock-title" style="color:#d4af6a">✂ Al Noor Barbers</div><div class="mock-lines"><div class="mock-line"></div><div class="mock-line short"></div></div></div></div>
+          <div class="portfolio-info"><p class="portfolio-tag">Barber Shop</p><h3>Al Noor Barbers</h3><p>Dark luxury aesthetic. Services menu, customer reviews, Google Maps placeholder, and WhatsApp booking button.</p><button class="view-demo-btn">Open demo ↗</button></div>
+        </div>
+        <div class="portfolio-card" onclick="openDemo('cafe')">
+          <div class="portfolio-thumb thumb-cafe"><div class="mock-browser"><div class="mock-bar"></div><div class="mock-title" style="color:#e8c98a">☕ Bait Al Qahwa</div><div class="mock-lines"><div class="mock-line"></div><div class="mock-line short"></div></div></div></div>
+          <div class="portfolio-info"><p class="portfolio-tag">Café & Restaurant</p><h3>Bait Al Qahwa</h3><p>Warm editorial design. Full menu with prices, opening hours, customer reviews, and contact section.</p><button class="view-demo-btn">Open demo ↗</button></div>
+        </div>
+        <div class="portfolio-card" onclick="openDemo('garage')">
+          <div class="portfolio-thumb thumb-garage"><div class="mock-browser"><div class="mock-bar"></div><div class="mock-title" style="color:#7eb8d4">🔧 Gulf Auto Care</div><div class="mock-lines"><div class="mock-line"></div><div class="mock-line short"></div></div></div></div>
+          <div class="portfolio-info"><p class="portfolio-tag">Car Garage</p><h3>Gulf Auto Care</h3><p>Bold industrial look. Services with pricing, trust stats, reviews, and a direct WhatsApp booking experience.</p><button class="view-demo-btn">Open demo ↗</button></div>
+        </div>
+      </div>
+      <div style="margin-top:48px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:36px 32px;text-align:center">
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:10px;color:var(--ink)">Don't see your business type?</h3>
+        <p style="color:var(--ink2);margin-bottom:24px;font-size:0.95rem">I build sites for salons, dentists, clinics, gyms, retail shops, and more.</p>
+        <button class="btn-primary" onclick="showPage('contact')">Request a free demo for your business →</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<div id="services" class="page">
+  <section style="padding-top:60px">
+    <div class="container">
+      <p class="section-label">What I offer</p>
+      <h2 class="section-title">Services & Pricing</h2>
+      <p class="section-sub">Everything your business needs to have a great online presence — built fast, priced fairly.</p>
+      <div class="services-layout">
+        <div class="services-list">
+          <div class="service-item"><div class="service-dot"></div><div><h3>Website Design & Development</h3><p>A beautiful, fully custom website built specifically for your business. Clean, fast, and professional.</p></div></div>
+          <div class="service-item"><div class="service-dot"></div><div><h3>Mobile-Friendly Design</h3><p>Your site will look perfect on phones, tablets, and desktops. Built mobile-first from the start.</p></div></div>
+          <div class="service-item"><div class="service-dot"></div><div><h3>Basic SEO Setup</h3><p>Page titles, descriptions, and structure set up so Google can find and show your business to customers.</p></div></div>
+          <div class="service-item"><div class="service-dot"></div><div><h3>Google Maps Integration</h3><p>Your location embedded on your site so customers can find and navigate to you with one tap.</p></div></div>
+          <div class="service-item"><div class="service-dot"></div><div><h3>WhatsApp Contact Button</h3><p>A direct WhatsApp button so customers can message you instantly — the easiest way to get leads in the UAE.</p></div></div>
+        </div>
+        <div>
+          <div class="pricing-cards">
+            <div class="price-card"><div class="price-tier">Basic Website</div><div class="price-amount">1,500 – 2,000 AED</div><div class="price-desc">Single-page or small site. Perfect for barber shops, small cafés, repair shops. Includes all core features.</div></div>
+            <div class="price-card featured"><div class="price-tier">Larger Website</div><div class="price-amount">2,000 – 4,000 AED</div><div class="price-desc">Multi-page site with gallery, menu, or booking. For restaurants, clinics, salons. Full SEO + WhatsApp.</div></div>
+            <div class="price-card" style="border-style:dashed"><div class="price-tier">Monthly Maintenance</div><div class="price-amount">Optional</div><div class="price-desc">Updates to content, photos, or services. Peace of mind that your site stays fresh.</div></div>
+          </div>
+          <div style="margin-top:20px;background:#fff2ec;border-radius:14px;padding:18px 20px">
+            <p style="font-size:0.85rem;color:var(--ink)"><strong>Free demo first.</strong> I'll build a demo of your website before you pay anything. You only pay if you love it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div id="contact" class="page">
+  <section class="contact-bg" style="padding-top:70px;min-height:100vh">
+    <div class="container">
+      <div class="contact-layout">
+        <div>
+          <p class="section-label">Get in touch</p>
+          <h2 class="section-title">Let's build your website</h2>
+          <p class="section-sub">Tell me about your business and I'll create a free demo website for you — no payment needed upfront.</p>
+          <div class="contact-info">
+            <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>hello@quickwebz.ae</div>
+            <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>Sharjah, UAE</div>
+          </div>
+          <div style="margin-top:24px">
+            <button class="wa-button" onclick="window.open('https://wa.me/971585216783?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business','_blank')">
+              <svg class="wa-icon" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Chat on WhatsApp
+            </button>
+          </div>
+        </div>
+        <div class="contact-form" id="contact-form-wrap">
+          <!-- IMPORTANT: Replace YOUR_FORM_ID below with your Formspree form ID -->
+          <!-- Go to formspree.io → New Form → copy the ID from your endpoint URL -->
+          <form id="contact-form" action="https://formspree.io/f/xlgplvpq" method="POST" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group"><label>Your Name</label><input type="text" name="name" placeholder="Mohammed Al Rashid" required/></div>
+              <div class="form-group"><label>Phone / WhatsApp</label><input type="text" name="phone" placeholder="+971 50 123 4567"/></div>
+            </div>
+            <div class="form-group"><label>Business Name</label><input type="text" name="business" placeholder="Al Noor Barbers" required/></div>
+            <div class="form-group">
+              <label>Business Type</label>
+              <select name="type">
+                <option value="" style="background:#2a2a2a;color:#fff">Select type...</option>
+                <option style="background:#2a2a2a;color:#fff">Barber Shop</option>
+                <option style="background:#2a2a2a;color:#fff">Café / Restaurant</option>
+                <option style="background:#2a2a2a;color:#fff">Car Garage</option>
+                <option style="background:#2a2a2a;color:#fff">Beauty Salon</option>
+                <option style="background:#2a2a2a;color:#fff">Clinic / Dentist</option>
+                <option style="background:#2a2a2a;color:#fff">Gym / Fitness</option>
+                <option style="background:#2a2a2a;color:#fff">Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Tell me about your business</label><textarea name="message" placeholder="Where are you located, what do you do, what do you need..."></textarea></div>
+            <button type="submit" class="submit-btn" id="submit-btn">Send message & request free demo →</button>
+          </form>
+          <div class="form-success" id="form-success">
+            <div style="font-size:2.5rem;margin-bottom:12px">✅</div>
+            <h3>Message sent!</h3>
+            <p>I'll review your details and get back to you within 24 hours with a free demo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <span>QuickWebz</span> — Fast, modern websites for local businesses &nbsp;·&nbsp; Sharjah, UAE &nbsp;·&nbsp; © 2025
+</footer>
+
+<!-- ============ DEMO MODAL ============ -->
+<div class="demo-overlay" id="demo-overlay">
+  <div class="demo-modal">
+    <div class="demo-modal-nav">
+      <div class="demo-modal-title">
+        <span id="demo-modal-label"></span>
+        <span class="demo-modal-tag">Demo</span>
+      </div>
+      <button class="demo-close" onclick="closeDemo()">✕</button>
+    </div>
+    <div class="demo-content" id="demo-content"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Message sent! I'll be in touch within 24 hours.</div>
+
+<!-- ============ DEMO SITE HTML ============ -->
+<template id="demo-barber">
+<div class="barber-site">
+  <nav class="barber-nav">
+    <div class="barber-logo">Al Noor <span>Barbers</span></div>
+    <div class="barber-nav-links"><span onclick="demoScroll('b-services')">Services</span><span onclick="demoScroll('b-reviews')">Reviews</span><span onclick="demoScroll('b-contact')">Contact</span></div>
+  </nav>
+  <div class="barber-hero">
+    <div>
+      <div class="barber-hero-badge">Est. 2018 · Sharjah, UAE</div>
+      <h1>The Art of a<br/><em>Perfect Cut.</em></h1>
+      <p>Premium barbering for the modern man. Classic cuts, clean fades, and expert beard grooming — all in a relaxed, welcoming space.</p>
+      <button class="barber-cta" onclick="window.open('https://wa.me/971585216783?text=Hi%2C+I+want+to+book+an+appointment+at+Al+Noor+Barbers','_blank')">Book via WhatsApp</button>
+    </div>
+    <div class="barber-visual"><div class="barber-visual-inner"><span class="barber-scissors">✂</span><div class="barber-visual-text">Premium Barbering</div></div></div>
+  </div>
+  <div id="b-services" class="barber-services">
+    <div class="barber-services-title">What we offer</div>
+    <h2>Our Services</h2>
+    <div class="barber-services-grid">
+      <div class="barber-service"><div class="barber-service-num">01</div><h3>Classic Haircut</h3><p>Scissor or clipper cut tailored to your face shape and style.</p><div class="barber-service-price">From 30 AED</div></div>
+      <div class="barber-service"><div class="barber-service-num">02</div><h3>Fade & Taper</h3><p>Sharp skin fades, low, mid, or high — precision every time.</p><div class="barber-service-price">From 40 AED</div></div>
+      <div class="barber-service"><div class="barber-service-num">03</div><h3>Beard Grooming</h3><p>Shape, trim, and define your beard with hot towel finish.</p><div class="barber-service-price">From 25 AED</div></div>
+      <div class="barber-service"><div class="barber-service-num">04</div><h3>Kids Haircut</h3><p>Gentle cuts for boys in a calm, friendly environment.</p><div class="barber-service-price">From 20 AED</div></div>
+    </div>
+  </div>
+  <div id="b-reviews" class="barber-reviews">
+    <div class="barber-services-title">What clients say</div>
+    <h2 style="font-size:2rem;font-weight:800;margin-bottom:0">Reviews</h2>
+    <div class="barber-reviews-grid">
+      <div class="barber-review"><div class="barber-review-stars">★★★★★</div><p>"Best barber in Sharjah. My fade always comes out perfect. The shop is clean and the staff are very professional."</p><div class="barber-review-name">Khalid M.</div></div>
+      <div class="barber-review"><div class="barber-review-stars">★★★★★</div><p>"I've been coming here for 2 years. Consistent quality every single time. Highly recommended for anyone in the area."</p><div class="barber-review-name">Saeed A.</div></div>
+      <div class="barber-review"><div class="barber-review-stars">★★★★★</div><p>"Great atmosphere and skilled barbers. The beard trim with hot towel is absolutely worth it. Will keep coming back."</p><div class="barber-review-name">Omar R.</div></div>
+    </div>
+  </div>
+  <div id="b-contact" class="barber-contact">
+    <div>
+      <h2>Find Us &<br/>Book an Appointment</h2>
+      <p>Walk-ins welcome. For faster service, book via WhatsApp and we'll confirm your slot.</p>
+      <div class="barber-contact-details">
+        <div class="barber-contact-item"><strong>📍</strong> Al Nahda, Sharjah, UAE</div>
+        <div class="barber-contact-item"><strong>🕐</strong> Sat–Thu: 9am – 10pm</div>
+        <div class="barber-contact-item"><strong>📞</strong> +971 58 521 6783</div>
+      </div>
+      <button class="barber-wa" onclick="window.open('https://wa.me/971585216783?text=Hi%2C+I+want+to+book+an+appointment','_blank')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Book on WhatsApp
+      </button>
+    </div>
+    <div class="barber-map">📍 Google Maps Embed Here</div>
+  </div>
+  <div class="barber-footer">© 2025 Al Noor Barbers · Sharjah, UAE · Website by QuickWebz</div>
+</div>
+</template>
+
+<template id="demo-cafe">
+<div class="cafe-site">
+  <nav class="cafe-nav">
+    <div class="cafe-logo">Bait Al <em>Qahwa</em></div>
+    <div class="cafe-nav-links"><span onclick="demoScroll('c-menu')">Menu</span><span onclick="demoScroll('c-about')">About</span><span onclick="demoScroll('c-reviews')">Reviews</span><span onclick="demoScroll('c-contact')">Visit Us</span></div>
+  </nav>
+  <div class="cafe-hero">
+    <div class="cafe-hero-text">
+      <div class="cafe-hero-tag">Artisan Coffee · Sharjah, UAE</div>
+      <h1>Where Every Cup Tells a <em>Story.</em></h1>
+      <p>Handcrafted coffee, warm pastries, and a cozy atmosphere — the perfect place to start your day or catch up with friends.</p>
+      <button class="cafe-cta" onclick="window.open('https://wa.me/971585216783?text=Hi%2C+I+want+to+make+a+reservation','_blank')">Reserve a table</button>
+    </div>
+    <div class="cafe-hero-img">☕</div>
+  </div>
+  <div id="c-menu" class="cafe-menu">
+    <div class="cafe-menu-label">What we serve</div>
+    <h2>Our Menu</h2>
+    <div class="cafe-menu-grid">
+      <div class="cafe-menu-item"><span class="cafe-menu-emoji">☕</span><h3>Arabic Coffee</h3><p>Traditional qahwa with cardamom and saffron, served with dates.</p><div class="cafe-menu-price">12 AED</div></div>
+      <div class="cafe-menu-item"><span class="cafe-menu-emoji">🥛</span><h3>Cortado</h3><p>Double espresso cut with equal parts warm silky milk.</p><div class="cafe-menu-price">18 AED</div></div>
+      <div class="cafe-menu-item"><span class="cafe-menu-emoji">🍵</span><h3>Karak Chai</h3><p>Spiced tea brewed strong with evaporated milk, UAE style.</p><div class="cafe-menu-price">10 AED</div></div>
+      <div class="cafe-menu-item"><span class="cafe-menu-emoji">🥐</span><h3>Croissant</h3><p>Freshly baked butter croissant, plain or with cheese and zaatar.</p><div class="cafe-menu-price">14 AED</div></div>
+      <div class="cafe-menu-item"><span class="cafe-menu-emoji">🍰</span><h3>Basbousa</h3><p>Soft semolina cake soaked in rose water syrup.</p><div class="cafe-menu-price">16 AED</div></div>
+      <div class="cafe-menu-item"><span class="cafe-menu-emoji">🥗</span><h3>Avocado Toast</h3><p>Sourdough toast with smashed avocado, poached egg, and chili.</p><div class="cafe-menu-price">28 AED</div></div>
+    </div>
+  </div>
+  <div id="c-about" class="cafe-about">
+    <div>
+      <h2>A Corner of Calm in the City</h2>
+      <p>Bait Al Qahwa — meaning "House of Coffee" — was born from a love of traditional Arabic hospitality and specialty coffee culture.</p>
+      <p>We source our beans ethically and roast them fresh weekly. Every cup is made with intention, every bite is baked with care.</p>
+    </div>
+    <div class="cafe-hours">
+      <h3>Opening Hours</h3>
+      <div class="cafe-hour-row"><span>Saturday – Wednesday</span><span>7:00 AM – 10:00 PM</span></div>
+      <div class="cafe-hour-row"><span>Thursday</span><span>7:00 AM – 11:00 PM</span></div>
+      <div class="cafe-hour-row"><span>Friday</span><span>8:00 AM – 11:00 PM</span></div>
+    </div>
+  </div>
+  <div id="c-reviews" class="cafe-reviews">
+    <div class="cafe-menu-label">What people say</div>
+    <h2>Reviews</h2>
+    <div class="cafe-reviews-grid">
+      <div class="cafe-review"><div class="cafe-review-stars">★★★★★</div><p>"The karak here is the best I've had outside my grandmother's kitchen. Cozy place, great staff, will definitely return."</p><div class="cafe-review-name">Fatima H.</div></div>
+      <div class="cafe-review"><div class="cafe-review-stars">★★★★★</div><p>"Lovely café with a calming atmosphere. The Arabic coffee and basbousa combination is absolutely perfect."</p><div class="cafe-review-name">Ahmed K.</div></div>
+      <div class="cafe-review"><div class="cafe-review-stars">★★★★★</div><p>"My go-to spot every morning. The cortado is excellent and the croissants are fresh. Highly recommend!"</p><div class="cafe-review-name">Sara M.</div></div>
+    </div>
+  </div>
+  <div id="c-contact" class="cafe-contact">
+    <div>
+      <h2>Come Visit Us</h2>
+      <p>We'd love to see you. Find us in the heart of Sharjah — walk-ins always welcome.</p>
+      <div class="cafe-contact-detail">📍 Al Majaz, Sharjah, UAE</div>
+      <div class="cafe-contact-detail">📞 +971 58 521 6783</div>
+      <div class="cafe-contact-detail">✉ hello@baitalqahwa.ae</div>
+      <button class="cafe-wa" onclick="window.open('https://wa.me/971585216783?text=Hi%2C+I+want+to+reserve+a+table','_blank')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Reserve on WhatsApp
+      </button>
+    </div>
+    <div class="cafe-map">📍 Google Maps Embed Here</div>
+  </div>
+  <div class="cafe-footer">© 2025 Bait Al Qahwa · Sharjah, UAE · Website by QuickWebz</div>
+</div>
+</template>
+
+<template id="demo-garage">
+<div class="garage-site">
+  <nav class="garage-nav">
+    <div class="garage-logo">Gulf <span>Auto</span> Care</div>
+    <div class="garage-nav-links"><span onclick="demoScroll('g-services')">Services</span><span onclick="demoScroll('g-why')">About</span><span onclick="demoScroll('g-reviews')">Reviews</span><span onclick="demoScroll('g-contact')">Contact</span></div>
+  </nav>
+  <div class="garage-hero">
+    <div class="garage-hero-inner">
+      <div>
+        <div class="garage-hero-label">Trusted Auto Workshop · Sharjah</div>
+        <h1>Your Car Deserves the Best Care.</h1>
+        <p>Professional diagnostics, servicing, and repairs for all makes and models. Trusted by hundreds of car owners across the UAE.</p>
+        <button class="garage-cta" onclick="window.open('https://wa.me/971585216783?text=Hi%2C+I+need+car+service+at+Gulf+Auto+Care','_blank')">Book a Service</button>
+        <div class="garage-badges"><span class="garage-badge">All Makes & Models</span><span class="garage-badge">OEM Parts</span><span class="garage-badge">Warranty on Work</span></div>
+      </div>
+      <div class="garage-hero-visual">🔧</div>
+    </div>
+  </div>
+  <div id="g-services" class="garage-services">
+    <div class="garage-services-label">What we do</div>
+    <h2>Our Services</h2>
+    <div class="garage-services-grid">
+      <div class="garage-service"><span class="garage-service-icon">🛢️</span><h3>Oil & Filter Change</h3><p>Full synthetic, semi-synthetic, or mineral oil. All brands available.</p><div class="garage-service-price">From 120 AED</div></div>
+      <div class="garage-service"><span class="garage-service-icon">🔍</span><h3>Full Diagnostics</h3><p>Computer scan and complete inspection of your vehicle's systems.</p><div class="garage-service-price">From 80 AED</div></div>
+      <div class="garage-service"><span class="garage-service-icon">🧊</span><h3>AC Service & Repair</h3><p>Gas refill, compressor check, and full AC system inspection.</p><div class="garage-service-price">From 150 AED</div></div>
+      <div class="garage-service"><span class="garage-service-icon">🔋</span><h3>Battery Replacement</h3><p>Test and replace your battery with genuine warranty-backed units.</p><div class="garage-service-price">From 200 AED</div></div>
+      <div class="garage-service"><span class="garage-service-icon">🛞</span><h3>Tires & Alignment</h3><p>New tires, rotation, balancing, and wheel alignment service.</p><div class="garage-service-price">From 60 AED</div></div>
+      <div class="garage-service"><span class="garage-service-icon">⚙️</span><h3>Engine Repair</h3><p>From minor tune-ups to major engine overhaul by certified mechanics.</p><div class="garage-service-price">Quote on request</div></div>
+    </div>
+  </div>
+  <div id="g-why" class="garage-why">
+    <div class="barber-services-title" style="color:#e63946;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px">Why choose us</div>
+    <h2 style="font-size:1.9rem;font-weight:700;color:#fff;margin-bottom:0">Trusted by the Community</h2>
+    <div class="garage-why-grid">
+      <div class="garage-why-item"><span class="garage-why-num">500+</span><h3>Cars Serviced</h3><p style="color:rgba(255,255,255,0.4)">Happy customers across Sharjah and Dubai</p></div>
+      <div class="garage-why-item"><span class="garage-why-num">8+</span><h3>Years Experience</h3><p style="color:rgba(255,255,255,0.4)">Skilled mechanics with years of hands-on expertise</p></div>
+      <div class="garage-why-item"><span class="garage-why-num">4.9★</span><h3>Google Rating</h3><p style="color:rgba(255,255,255,0.4)">Consistently top-rated in the area</p></div>
+      <div class="garage-why-item"><span class="garage-why-num">1 Year</span><h3>Warranty on Work</h3><p style="color:rgba(255,255,255,0.4)">All repairs backed by our quality guarantee</p></div>
+    </div>
+  </div>
+  <div id="g-reviews" class="garage-reviews">
+    <div class="garage-services-label">What clients say</div>
+    <h2 style="font-size:1.9rem;font-weight:700;color:#1a1a1a">Reviews</h2>
+    <div class="garage-reviews-grid">
+      <div class="garage-review"><div class="garage-review-stars">★★★★★</div><p>"Very professional and honest. They told me exactly what needed fixing without trying to upsell unnecessary work. Great team."</p><div class="garage-review-name">Rashed A.</div></div>
+      <div class="garage-review"><div class="garage-review-stars">★★★★★</div><p>"Fast service, fair prices, and they even washed my car before returning it. This is my go-to garage now."</p><div class="garage-review-name">Mohammed S.</div></div>
+      <div class="garage-review"><div class="garage-review-stars">★★★★★</div><p>"Fixed my AC in under 2 hours. The team was friendly, the price was reasonable, and they explained everything clearly."</p><div class="garage-review-name">Tariq N.</div></div>
+    </div>
+  </div>
+  <div id="g-contact" class="garage-contact">
+    <div>
+      <div class="garage-contact-label">Get in touch</div>
+      <h2>Book Your Service Today</h2>
+      <div class="garage-contact-items">
+        <div class="garage-contact-item">📍 <span>Industrial Area 12, Sharjah, UAE</span></div>
+        <div class="garage-contact-item">📞 <span>+971 58 521 6783</span></div>
+        <div class="garage-contact-item">🕐 <span>Sat–Thu: 8am – 8pm</span></div>
+      </div>
+      <button class="garage-wa" onclick="window.open('https://wa.me/971585216783?text=Hi%2C+I+need+car+service','_blank')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Book via WhatsApp
+      </button>
+    </div>
+    <div class="garage-map">📍 Google Maps Embed Here</div>
+  </div>
+  <div class="garage-footer">© 2025 Gulf Auto Care · Sharjah, UAE · Website by QuickWebz</div>
+</div>
+</template>
+
+<script>
+const demoLabels = {barber:'Al Noor Barbers',cafe:'Bait Al Qahwa',garage:'Gulf Auto Care'};
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = ['home','portfolio','services','contact'].indexOf(id);
+  if(idx>=0) document.querySelectorAll('.nav-links a')[idx].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function demoScroll(id){
+  const el = document.getElementById('demo-content').querySelector('#'+id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function openDemo(type){
+  const tpl = document.getElementById('demo-'+type);
+  document.getElementById('demo-content').innerHTML = tpl.innerHTML;
+  document.getElementById('demo-modal-label').textContent = demoLabels[type];
+  document.getElementById('demo-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeDemo(){
+  document.getElementById('demo-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.getElementById('demo-overlay').addEventListener('click',function(e){
+  if(e.target===this) closeDemo();
+});
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeDemo();
+});
+
+async function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  try{
+    const res = await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+    if(res.ok){
+      document.getElementById('contact-form').style.display='none';
+      document.getElementById('form-success').style.display='block';
+    } else {
+      btn.disabled=false;
+      btn.textContent='Send message & request free demo →';
+      alert('Something went wrong. Please try WhatsApp instead.');
+    }
+  } catch(err){
+    btn.disabled=false;
+    btn.textContent='Send message & request free demo →';
+    alert('Could not send. Please contact via WhatsApp.');
+  }
+}
+</script>
+</body>
+</html>
